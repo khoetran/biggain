@@ -1,0 +1,16 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"removeComments": false,
+		"preserveConstEnums": true,
+		"sourceMap": false,
+		"outDir": "../out/bg",
+		"target": "es2020",
+		"types": [
+		]
+	},
+	"include": [
+		"./typings",
+		"./bg"
+	]
+}
