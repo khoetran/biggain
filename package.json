@@ -17,8 +17,7 @@
     "web": "node resources/web/code-web.js",
     "hygiene": "node --max_old_space_size=4095 ./node_modules/gulp/bin/gulp.js hygiene"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "event-stream": "3.3.4",
     "gulp": "^4.0.2",
@@ -26,7 +25,11 @@
     "gulp-filter": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-tsb": "4.0.6",
+    "mocha": "^9.0.2",
+    "mocha-junit-reporter": "^2.0.0",
+    "optimist": "^0.6.1",
     "p-all": "^1.0.0",
+    "playwright": "^1.12.3",
     "rimraf": "^2.2.8",
     "source-map": "0.6.1",
     "typescript": "^4.4.0-dev.20210708",
