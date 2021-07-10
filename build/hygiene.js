@@ -18,7 +18,6 @@ const copyrightHeaderLines = [
 ];
 
 function hygiene(some) {
-	const tsfmt = require('typescript-formatter');
 
 	let errorCount = 0;
 
@@ -69,39 +68,6 @@ function hygiene(some) {
 		this.emit('data', file);
 	});
 
-	const formatting = es.map(function (file, cb) {
-		tsfmt
-			.processString(file.path, file.contents.toString('utf8'), {
-				verify: false,
-				tsfmt: true,
-				// verbose: true,
-				// keep checkJS happy
-				editorconfig: undefined,
-				replace: undefined,
-				tsconfig: undefined,
-				tsconfigFile: undefined,
-				tsfmtFile: undefined
-			})
-			.then(
-				(result) => {
-					let original = result.src.replace(/\r\n/gm, '\n');
-					let formatted = result.dest.replace(/\r\n/gm, '\n');
-
-					if (original !== formatted) {
-						console.error(
-							`File not formatted. Run the 'Format Document' command to fix it:`,
-							file.relative
-						);
-						errorCount++;
-					}
-					cb(null, file);
-				},
-				(err) => {
-					cb(err);
-				}
-			);
-	});
-
 	let input;
 
 	if (Array.isArray(some) || typeof some === 'string' || !some) {
@@ -128,7 +94,7 @@ function hygiene(some) {
 		.pipe(copyrights);
 
 	const streams = [
-		result.pipe(filter(tsHygieneFilter)).pipe(formatting)
+		result.pipe(filter(tsHygieneFilter))
 	];
 
 	let count = 0;

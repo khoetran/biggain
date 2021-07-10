@@ -37,6 +37,9 @@ declare const define: {
 	(moduleName: string, definition: any): any;
 	(dependencies: string[], callback: (...args: any[]) => any): any;
 	(dependencies: string[], definition: any): any;
+	amd: {
+		jQuery: boolean;
+	};
 };
 
 interface NodeRequire {
