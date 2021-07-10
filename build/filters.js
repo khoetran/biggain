@@ -30,6 +30,7 @@ module.exports.indentationFilter = [
 	'!LICENSES.chromium.html',
 	'!**/LICENSE',
 	'!test/unit/assert.js',
+	'!src/bg/base/common/insane/insane.js',
 
 	// except multiple specific files
 	'!**/package.json',

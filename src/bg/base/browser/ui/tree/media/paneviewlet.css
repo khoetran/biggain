@@ -1,0 +1,11 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Khoe Tran. All rights reserved.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-pane-view .pane > .pane-header h3.title {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-size: 11px;
+	margin: 0;
+}

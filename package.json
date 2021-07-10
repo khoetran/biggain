@@ -17,7 +17,9 @@
     "web": "node resources/web/code-web.js",
     "hygiene": "node --max_old_space_size=4095 ./node_modules/gulp/bin/gulp.js hygiene"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/trusted-types": "^2.0.2"
+  },
   "devDependencies": {
     "event-stream": "3.3.4",
     "gulp": "^4.0.2",
