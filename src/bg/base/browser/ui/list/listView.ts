@@ -341,7 +341,6 @@ export class ListView<T> implements ISpliceable<T>, IDisposable {
 		this.disposables.add(addDisposableListener(this.rowsContainer, TouchEventType.Change, e => this.onTouchChange(e as GestureEvent)));
 
 		// Prevent the monaco-scrollable-element from scrolling
-		// https://github.com/microsoft/vscode/issues/44181
 		this.disposables.add(addDisposableListener(this.scrollableElement.getDomNode(), 'scroll', e => (e.target as HTMLElement).scrollTop = 0));
 
 		this.disposables.add(addDisposableListener(this.domNode, 'dragover', e => this.onDragOver(this.toDragEvent(e))));
@@ -991,7 +990,7 @@ export class ListView<T> implements ISpliceable<T>, IDisposable {
 
 		this.onDragLeaveTimeout.dispose();
 
-		if (StaticDND.CurrentDragAndDropData && StaticDND.CurrentDragAndDropData.getData() === 'vscode-ui') {
+		if (StaticDND.CurrentDragAndDropData && StaticDND.CurrentDragAndDropData.getData() === 'biggain-ui') {
 			return false;
 		}
 
@@ -1275,9 +1274,6 @@ export class ListView<T> implements ISpliceable<T>, IDisposable {
 				if (typeof anchorElementIndex === 'number') {
 					// To compute a destination scroll top, we need to take into account the current smooth scrolling
 					// animation, and then reuse it with a new target (to avoid prolonging the scroll)
-					// See https://github.com/microsoft/vscode/issues/104144
-					// See https://github.com/microsoft/vscode/pull/104284
-					// See https://github.com/microsoft/vscode/issues/107704
 					const deltaScrollTop = this.scrollable.getFutureScrollPosition().scrollTop - renderTop;
 					const newScrollTop = this.elementTop(anchorElementIndex) - anchorElementTopDelta! + deltaScrollTop;
 					this.setScrollTop(newScrollTop, inSmoothScrolling);

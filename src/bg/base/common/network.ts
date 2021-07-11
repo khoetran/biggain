@@ -16,7 +16,7 @@ export namespace Schemas {
 	/**
 	 * A schema that is used for setting files
 	 */
-	export const vscode = 'vscode';
+	export const biggain = 'biggain';
 
 	/**
 	 * A schema that is used for internal private files
@@ -47,35 +47,35 @@ export namespace Schemas {
 
 	export const command = 'command';
 
-	export const vscodeRemote = 'vscode-remote';
+	export const biggainRemote = 'biggain-remote';
 
-	export const vscodeRemoteResource = 'vscode-remote-resource';
+	export const biggainRemoteResource = 'biggain-remote-resource';
 
-	export const userData = 'vscode-userdata';
+	export const userData = 'biggain-userdata';
 
-	export const vscodeCustomEditor = 'vscode-custom-editor';
+	export const biggainCustomEditor = 'biggain-custom-editor';
 
-	export const vscodeNotebook = 'vscode-notebook';
+	export const biggainNotebook = 'biggain-notebook';
 
-	export const vscodeNotebookCell = 'vscode-notebook-cell';
+	export const biggainNotebookCell = 'biggain-notebook-cell';
 
-	export const vscodeNotebookCellMetadata = 'vscode-notebook-cell-metadata';
-	export const vscodeNotebookCellOutput = 'vscode-notebook-cell-output';
-	export const vscodeInteractive = 'vscode-interactive';
-	export const vscodeInteractiveInput = 'vscode-interactive-input';
+	export const biggainNotebookCellMetadata = 'biggain-notebook-cell-metadata';
+	export const biggainNotebookCellOutput = 'biggain-notebook-cell-output';
+	export const biggainInteractive = 'biggain-interactive';
+	export const biggainInteractiveInput = 'biggain-interactive-input';
 
-	export const vscodeSettings = 'vscode-settings';
+	export const biggainSettings = 'biggain-settings';
 
-	export const vscodeWorkspaceTrust = 'vscode-workspace-trust';
+	export const biggainWorkspaceTrust = 'biggain-workspace-trust';
 
-	export const vscodeTerminal = 'vscode-terminal';
+	export const biggainTerminal = 'biggain-terminal';
 
 	export const webviewPanel = 'webview-panel';
 
 	/**
 	 * Scheme used for loading the wrapper html and script in webviews.
 	 */
-	export const vscodeWebview = 'vscode-webview';
+	export const biggainWebview = 'biggain-webview';
 
 	/**
 	 * Scheme used for extension pages
@@ -86,7 +86,7 @@ export namespace Schemas {
 	 * Scheme used as a replacement of `file` scheme to load
 	 * files with our custom protocol handler (desktop only).
 	 */
-	export const vscodeFileResource = 'vscode-file';
+	export const biggainFileResource = 'biggain-file';
 
 	/**
 	 * Scheme used for temporary resources
@@ -134,9 +134,9 @@ class RemoteAuthoritiesImpl {
 			query += `&tkn=${encodeURIComponent(connectionToken)}`;
 		}
 		return URI.from({
-			scheme: platform.isWeb ? this._preferredWebSchema : Schemas.vscodeRemoteResource,
+			scheme: platform.isWeb ? this._preferredWebSchema : Schemas.biggainRemoteResource,
 			authority: `${host}:${port}`,
-			path: `/vscode-remote-resource`,
+			path: `/biggain-remote-resource`,
 			query
 		});
 	}
@@ -146,7 +146,7 @@ export const RemoteAuthorities = new RemoteAuthoritiesImpl();
 
 class FileAccessImpl {
 
-	private readonly FALLBACK_AUTHORITY = 'vscode-app';
+	private readonly FALLBACK_AUTHORITY = 'biggain-app';
 
 	/**
 	 * Returns a URI to use in contexts where the browser is responsible
@@ -160,26 +160,26 @@ class FileAccessImpl {
 		const uri = this.toUri(uriOrModule, moduleIdToUrl);
 
 		// Handle remote URIs via `RemoteAuthorities`
-		if (uri.scheme === Schemas.vscodeRemote) {
+		if (uri.scheme === Schemas.biggainRemote) {
 			return RemoteAuthorities.rewrite(uri);
 		}
 
-		let convertToVSCodeFileResource = false;
+		let convertToBigGainFileResource = false;
 
 		// Only convert the URI if we are in a native context and it has `file:` scheme
-		// and we have explicitly enabled the conversion (sandbox, or VSCODE_BROWSER_CODE_LOADING)
+		// and we have explicitly enabled the conversion (sandbox, or BIGGAIN_BROWSER_CODE_LOADING)
 		if (platform.isNative && (__forceCodeFileUri || platform.isPreferringBrowserCodeLoad) && uri.scheme === Schemas.file) {
-			convertToVSCodeFileResource = true;
+			convertToBigGainFileResource = true;
 		}
 
 		// Also convert `file:` URIs in the web worker extension host (running in desktop) case
-		if (uri.scheme === Schemas.file && typeof platform.globals.importScripts === 'function' && platform.globals.origin === 'vscode-file://vscode-app') {
-			convertToVSCodeFileResource = true;
+		if (uri.scheme === Schemas.file && typeof platform.globals.importScripts === 'function' && platform.globals.origin === 'biggain-file://biggain-app') {
+			convertToBigGainFileResource = true;
 		}
 
-		if (convertToVSCodeFileResource) {
+		if (convertToBigGainFileResource) {
 			return uri.with({
-				scheme: Schemas.vscodeFileResource,
+				scheme: Schemas.biggainFileResource,
 				// We need to provide an authority here so that it can serve
 				// as origin for network and loading matters in chromium.
 				// If the URI is not coming with an authority already, we
@@ -202,8 +202,8 @@ class FileAccessImpl {
 	asFileUri(uriOrModule: URI | string, moduleIdToUrl?: { toUrl(moduleId: string): string }): URI {
 		const uri = this.toUri(uriOrModule, moduleIdToUrl);
 
-		// Only convert the URI if it is `vscode-file:` scheme
-		if (uri.scheme === Schemas.vscodeFileResource) {
+		// Only convert the URI if it is `biggain-file:` scheme
+		if (uri.scheme === Schemas.biggainFileResource) {
 			return uri.with({
 				scheme: Schemas.file,
 				// Only preserve the `authority` if it is different from

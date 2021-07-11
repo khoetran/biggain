@@ -52,9 +52,9 @@ declare const self: unknown;
 export const globals: any = (typeof self === 'object' ? self : typeof global === 'object' ? global : {});
 
 let nodeProcess: INodeProcess | undefined = undefined;
-if (typeof globals.vscode !== 'undefined' && typeof globals.vscode.process !== 'undefined') {
+if (typeof globals.biggain !== 'undefined' && typeof globals.biggain.process !== 'undefined') {
 	// Native environment (sandboxed)
-	nodeProcess = globals.vscode.process;
+	nodeProcess = globals.biggain.process;
 } else if (typeof process !== 'undefined') {
 	// Native environment (non-sandboxed)
 	nodeProcess = process;
@@ -76,7 +76,7 @@ export const browserCodeLoadingCacheStrategy: BROWSER_CODE_CACHE_OPTIONS = (() =
 	}
 
 	// Otherwise, only enabled conditionally
-	const env = nodeProcess?.env['VSCODE_BROWSER_CODE_LOADING'];
+	const env = nodeProcess?.env['BIGGAIN_BROWSER_CODE_LOADING'];
 	if (typeof env === 'string') {
 		if (env === 'none' || env === 'code' || env === 'bypassHeatCheck' || env === 'bypassHeatCheckAndEagerCompile') {
 			return env;
@@ -116,13 +116,13 @@ else if (typeof nodeProcess === 'object') {
 	_isLinuxSnap = _isLinux && !!nodeProcess.env['SNAP'] && !!nodeProcess.env['SNAP_REVISION'];
 	_locale = LANGUAGE_DEFAULT;
 	_language = LANGUAGE_DEFAULT;
-	const rawNlsConfig = nodeProcess.env['VSCODE_NLS_CONFIG'];
+	const rawNlsConfig = nodeProcess.env['BIGGAIN_NLS_CONFIG'];
 	if (rawNlsConfig) {
 		try {
 			const nlsConfig: NLSConfig = JSON.parse(rawNlsConfig);
 			const resolved = nlsConfig.availableLanguages['*'];
 			_locale = nlsConfig.locale;
-			// VSCode's default language is 'en'
+			// BigGain's default language is 'en'
 			_language = resolved ? resolved : LANGUAGE_DEFAULT;
 			_translationsConfigFile = nlsConfig._translationsConfigFile;
 		} catch (e) {
@@ -225,10 +225,10 @@ export const setImmediate: ISetImmediate = (function defineSetImmediate() {
 		}
 		let pending: IQueueElement[] = [];
 		globals.addEventListener('message', (e: MessageEvent) => {
-			if (e.data && e.data.vscodeSetImmediateId) {
+			if (e.data && e.data.biggainSetImmediateId) {
 				for (let i = 0, len = pending.length; i < len; i++) {
 					const candidate = pending[i];
-					if (candidate.id === e.data.vscodeSetImmediateId) {
+					if (candidate.id === e.data.biggainSetImmediateId) {
 						pending.splice(i, 1);
 						candidate.callback();
 						return;
@@ -243,7 +243,7 @@ export const setImmediate: ISetImmediate = (function defineSetImmediate() {
 				id: myId,
 				callback: callback
 			});
-			globals.postMessage({ vscodeSetImmediateId: myId }, '*');
+			globals.postMessage({ biggainSetImmediateId: myId }, '*');
 		};
 	}
 	if (typeof nodeProcess?.nextTick === 'function') {

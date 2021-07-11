@@ -851,7 +851,7 @@ class TypeFilterController<T, TFilterData> implements IDisposable {
 		disposables.add(addDisposableListener(document, 'dragover', e => onDragOver(e)));
 		disposables.add(addDisposableListener(this.domNode, 'dragend', () => onDragEnd()));
 
-		StaticDND.CurrentDragAndDropData = new DragAndDropData('vscode-ui');
+		StaticDND.CurrentDragAndDropData = new DragAndDropData('biggain-ui');
 		disposables.add(toDisposable(() => StaticDND.CurrentDragAndDropData = undefined));
 	}
 

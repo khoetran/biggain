@@ -27,7 +27,6 @@ class WindowManager {
 		}
 
 		this._zoomLevel = zoomLevel;
-		// See https://github.com/microsoft/vscode/issues/26151
 		this._lastZoomLevelChangeTime = isTrusted ? 0 : Date.now();
 		this._onDidChangeZoomLevel.fire(this._zoomLevel);
 	}

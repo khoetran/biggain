@@ -163,7 +163,7 @@ function guessMimeTypeByPath(path: string, filename: string, associations: IText
 	let extensionMatch: ITextMimeAssociationItem | null = null;
 
 	// We want to prioritize associations based on the order they are registered so that the last registered
-	// association wins over all other. This is for https://github.com/microsoft/vscode/issues/20074
+	// association wins over all other.
 	for (let i = associations.length - 1; i >= 0; i--) {
 		const association = associations[i];
 
@@ -219,7 +219,7 @@ function guessMimeTypeByFirstline(firstLine: string): string | null {
 	if (firstLine.length > 0) {
 
 		// We want to prioritize associations based on the order they are registered so that the last registered
-		// association wins over all other. This is for https://github.com/microsoft/vscode/issues/20074
+		// association wins over all other.
 		for (let i = registeredAssociations.length - 1; i >= 0; i--) {
 			const association = registeredAssociations[i];
 			if (!association.firstline) {

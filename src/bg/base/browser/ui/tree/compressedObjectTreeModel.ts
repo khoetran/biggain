@@ -146,7 +146,6 @@ export class CompressedObjectTreeModel<T extends NonNullable<any>, TFilterData e
 		options: IObjectTreeModelSetChildrenOptions<T, TFilterData>,
 	): void {
 		// Diffs must be deem, since the compression can affect nested elements.
-		// @see https://github.com/microsoft/vscode/pull/114237#issuecomment-759425034
 
 		const diffIdentityProvider = options.diffIdentityProvider && wrapIdentityProvider(options.diffIdentityProvider);
 		if (element === null) {

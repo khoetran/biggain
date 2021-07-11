@@ -3,6 +3,18 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+var define: {
+	(moduleName: string, dependencies: string[], callback: (...args: any[]) => any): any;
+	(moduleName: string, dependencies: string[], definition: any): any;
+	(moduleName: string, callback: (...args: any[]) => any): any;
+	(moduleName: string, definition: any): any;
+	(dependencies: string[], callback: (...args: any[]) => any): any;
+	(dependencies: string[], definition: any): any;
+	amd: {
+		jQuery: boolean;
+	};
+};
+
 declare var doNotInitLoader: any;
 
 const _amdLoaderGlobal = this;

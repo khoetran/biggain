@@ -8,8 +8,8 @@ let safeProcess: INodeProcess & { nextTick: (callback: (...args: any[]) => void)
 declare const process: INodeProcess;
 
 // Native sandbox environment
-if (typeof globals.vscode !== 'undefined' && typeof globals.vscode.process !== 'undefined') {
-	const sandboxProcess: INodeProcess = globals.vscode.process;
+if (typeof globals.biggain !== 'undefined' && typeof globals.biggain.process !== 'undefined') {
+	const sandboxProcess: INodeProcess = globals.biggain.process;
 	safeProcess = {
 		get platform() { return sandboxProcess.platform; },
 		get env() { return sandboxProcess.env; },
@@ -23,7 +23,7 @@ else if (typeof process !== 'undefined') {
 	safeProcess = {
 		get platform() { return process.platform; },
 		get env() { return process.env; },
-		cwd() { return process.env['VSCODE_CWD'] || process.cwd(); },
+		cwd() { return process.env['BIGGAIN_CWD'] || process.cwd(); },
 		nextTick(callback: (...args: any[]) => void): void { return process.nextTick!(callback); }
 	};
 }

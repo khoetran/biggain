@@ -206,7 +206,6 @@ export abstract class Pane extends Disposable implements IView {
 		this.header = $('.pane-header');
 		append(this.element, this.header);
 		this.header.setAttribute('tabindex', '0');
-		// Use role button so the aria-expanded state gets read https://github.com/microsoft/vscode/issues/95996
 		this.header.setAttribute('role', 'button');
 		this.header.setAttribute('aria-label', this.ariaHeaderLabel);
 		this.renderHeader(this.header);
@@ -296,7 +295,7 @@ class PaneDraggable extends Disposable {
 
 	private static readonly DefaultDragOverBackgroundColor = new Color(new RGBA(128, 128, 128, 0.5));
 
-	private dragOverCounter = 0; // see https://github.com/microsoft/vscode/issues/14470
+	private dragOverCounter = 0;
 
 	private _onDidDrop = this._register(new Emitter<{ from: Pane, to: Pane }>());
 	readonly onDidDrop = this._onDidDrop.event;

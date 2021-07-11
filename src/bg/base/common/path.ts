@@ -2,7 +2,7 @@
  *  Copyright (c) Khoe Tran. All rights reserved.
  *--------------------------------------------------------------------------------------------*/
 
-// NOTE: VSCode's copy of nodejs path library to be usable in common (non-node) namespace
+// NOTE: BigGain's copy of nodejs path library to be usable in common (non-node) namespace
 // Copied from: https://github.com/nodejs/node/blob/v12.8.1/lib/path.js
 
 /**
