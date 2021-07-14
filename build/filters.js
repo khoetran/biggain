@@ -31,6 +31,7 @@ module.exports.indentationFilter = [
 	'!**/LICENSE',
 	'!test/unit/assert.js',
 	'!src/bg/base/common/insane/insane.js',
+	'!src/bg/base/common/marked/marked.js',
 	'!src/bg/base/node/terminateProcess.sh',
 
 	// except multiple specific files
