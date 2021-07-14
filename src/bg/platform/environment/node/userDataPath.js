@@ -32,7 +32,6 @@
 			// current working directory. We cannot use the
 			// node.js `path.resolve()` logic because it will
 			// not pick up our `BIGGAIN_CWD` environment variable
-			// (https://github.com/microsoft/vscode/issues/120269)
 			if (!path.isAbsolute(userDataPath)) {
 				pathsToResolve.unshift(cwd);
 			}

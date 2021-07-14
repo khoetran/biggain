@@ -520,7 +520,6 @@ export class FileService extends Disposable implements IFileService {
 
 			// Await the stream to finish so that we exit this method
 			// in a consistent state with file handles closed
-			// (https://github.com/microsoft/vscode/issues/114024)
 			if (fileStream) {
 				await consumeStream(fileStream);
 			}
@@ -891,7 +890,6 @@ export class FileService extends Disposable implements IFileService {
 					// if multiple calls try to create the same folders
 					// As such, we only throw an error here if it is other than
 					// the fact that the file already exists.
-					// (see also https://github.com/microsoft/vscode/issues/89834)
 					throw error;
 				}
 			}
@@ -965,7 +963,6 @@ export class FileService extends Disposable implements IFileService {
 	 * and we want to protect against this to reduce CPU pressure.
 	 * The following settings limit the amount of file changes we
 	 * process at once.
-	 * (https://github.com/microsoft/vscode/issues/124723)
 	 */
 	private static readonly FILE_EVENTS_THROTTLING = {
 		maxChangesChunkSize: 500 as const,		// number of changes we process per interval
@@ -1083,7 +1080,6 @@ export class FileService extends Disposable implements IFileService {
 		//
 		// Note: we only do this for non-recursive watchers
 		// until we have a better `createWatcher` based API
-		// (https://github.com/microsoft/vscode/issues/126809)
 		//
 		if (!options.recursive) {
 

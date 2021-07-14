@@ -220,11 +220,11 @@ suite('File Service', () => {
 		service.dispose();
 	});
 
-	test('error from readFile bubbles through (https://github.com/microsoft/vscode/issues/118060) - async', async () => {
+	test('error from readFile bubbles through - async', async () => {
 		testReadErrorBubbles(true);
 	});
 
-	test('error from readFile bubbles through (https://github.com/microsoft/vscode/issues/118060)', async () => {
+	test('error from readFile bubbles through', async () => {
 		testReadErrorBubbles(false);
 	});
 

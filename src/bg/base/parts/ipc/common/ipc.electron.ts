@@ -21,13 +21,13 @@ export class Protocol implements IMessagePassingProtocol {
 
 	send(message: VSBuffer): void {
 		try {
-			this.sender.send('vscode:message', message.buffer);
+			this.sender.send('biggain:message', message.buffer);
 		} catch (e) {
 			// systems are going down
 		}
 	}
 
 	disconnect(): void {
-		this.sender.send('vscode:disconnect', null);
+		this.sender.send('biggain:disconnect', null);
 	}
 }

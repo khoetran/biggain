@@ -10,7 +10,7 @@ import { IProcessEnvironment } from 'bg/base/common/platform';
 export interface CommandOptions {
 	/**
 	 * The current working directory of the executed program or shell.
-	 * If omitted VSCode's current workspace root is used.
+	 * If omitted BigGain's current workspace root is used.
 	 */
 	cwd?: string;
 
@@ -98,7 +98,7 @@ export interface ProcessItem {
 }
 
 /**
- * Sanitizes a VS Code process environment by removing all Electron/VS Code-related values.
+ * Sanitizes a BigGain process environment by removing all Electron/BigGain-related values.
  */
 export function sanitizeProcessEnvironment(env: IProcessEnvironment, ...preserve: string[]): void {
 	const set = preserve.reduce((set, key) => {
@@ -107,7 +107,7 @@ export function sanitizeProcessEnvironment(env: IProcessEnvironment, ...preserve
 	}, {} as Record<string, boolean>);
 	const keysToRemove = [
 		/^ELECTRON_.+$/,
-		/^VSCODE_.+$/,
+		/^BIGGAIN_.+$/,
 		/^SNAP(|_.*)$/,
 		/^GDK_PIXBUF_.+$/,
 	];

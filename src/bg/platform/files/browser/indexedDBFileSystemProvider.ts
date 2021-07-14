@@ -10,9 +10,9 @@ import { VSBuffer } from 'bg/base/common/buffer';
 import { Throttler } from 'bg/base/common/async';
 import { joinPath } from 'bg/base/common/resources';
 
-const INDEXEDDB_BIGGAIN_DB = 'vscode-web-db';
-export const INDEXEDDB_USERDATA_OBJECT_STORE = 'vscode-userdata-store';
-export const INDEXEDDB_LOGS_OBJECT_STORE = 'vscode-logs-store';
+const INDEXEDDB_BIGGAIN_DB = 'biggain-web-db';
+export const INDEXEDDB_USERDATA_OBJECT_STORE = 'biggain-userdata-store';
+export const INDEXEDDB_LOGS_OBJECT_STORE = 'biggain-logs-store';
 
 // Standard FS Errors (expected to be thrown in production when invalid FS operations are requested)
 const ERR_FILE_NOT_FOUND = createFileSystemProviderError("File does not exist", FileSystemProviderErrorCode.FileNotFound);
@@ -228,7 +228,7 @@ class IndexedDBFileSystemProvider extends Disposable implements IIndexedDBFileSy
 		super();
 		this.writeManyThrottler = new Throttler();
 
-		this.changesKey = `vscode.indexedDB.${scheme}.changes`;
+		this.changesKey = `biggain.indexedDB.${scheme}.changes`;
 		if (watchCrossWindowChanges) {
 			const storageListener = (event: StorageEvent) => this.onDidStorageChange(event);
 			window.addEventListener('storage', storageListener);

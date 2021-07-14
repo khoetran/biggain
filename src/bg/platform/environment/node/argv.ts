@@ -53,7 +53,7 @@ export const OPTIONS: OptionDescriptions<Required<NativeParsedArgs>> = {
 	'list-extensions': { type: 'boolean', cat: 'e', description: "List the installed extensions." },
 	'show-versions': { type: 'boolean', cat: 'e', description: "Show versions of installed extensions, when using --list-extensions." },
 	'category': { type: 'string', cat: 'e', description: "Filters installed extensions by provided category, when using --list-extensions.", args: 'category' },
-	'install-extension': { type: 'string[]', cat: 'e', args: 'extension-id[@version] | path-to-vsix', description: "Installs or updates the extension. The identifier of an extension is always `${publisher}.${name}`. Use `--force` argument to update to latest version. To install a specific version provide `@${version}`. For example: 'vscode.csharp@1.2.3'." },
+	'install-extension': { type: 'string[]', cat: 'e', args: 'extension-id[@version] | path-to-vsix', description: "Installs or updates the extension. The identifier of an extension is always `${publisher}.${name}`. Use `--force` argument to update to latest version. To install a specific version provide `@${version}`." },
 	'uninstall-extension': { type: 'string[]', cat: 'e', args: 'extension-id', description: "Uninstalls an extension." },
 	'enable-proposed-api': { type: 'string[]', cat: 'e', args: 'extension-id', description: "Enables proposed API features for extensions. Can receive one or more extension IDs to enable individually." },
 
@@ -74,7 +74,7 @@ export const OPTIONS: OptionDescriptions<Required<NativeParsedArgs>> = {
 	'inspect-brk-extensions': { type: 'string', deprecates: 'debugBrkPluginHost', args: 'port', cat: 't', description: "Allow debugging and profiling of extensions with the extension host being paused after start. Check the developer tools for the connection URI." },
 	'disable-gpu': { type: 'boolean', cat: 't', description: "Disable GPU hardware acceleration." },
 	'max-memory': { type: 'string', cat: 't', description: "Max memory size for a window (in Mbytes).", args: 'memory' },
-	'telemetry': { type: 'boolean', cat: 't', description: "Shows all telemetry events which VS code collects." },
+	'telemetry': { type: 'boolean', cat: 't', description: "Shows all telemetry events which BigGain collects." },
 
 	'remote': { type: 'string' },
 	'folder-uri': { type: 'string[]', cat: 'o', args: 'uri' },
@@ -177,7 +177,6 @@ export function parseArgs<T>(args: string[], options: OptionDescriptions<T>, err
 	const cleanedArgs: any = {};
 	const remainingArgs: any = parsedArgs;
 
-	// https://github.com/microsoft/vscode/issues/58177, https://github.com/microsoft/vscode/issues/106617
 	cleanedArgs._ = parsedArgs._.map(arg => String(arg)).filter(arg => arg.length > 0);
 
 	delete remainingArgs._;

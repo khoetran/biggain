@@ -8,8 +8,6 @@ import { sep, join, normalize, dirname, basename } from 'bg/base/common/path';
 import { Promises, readdirSync } from 'bg/base/node/pfs';
 
 /**
- * Copied from: https://github.com/microsoft/vscode-node-debug/blob/master/src/node/pathUtilities.ts#L83
- *
  * Given an absolute, normalized, and existing file path 'realcase' returns the exact path that the file has on disk.
  * On a case insensitive file system, the returned path might differ from the original path by character casing.
  * On a case sensitive file system, the returned path will always be identical to the original path.
@@ -54,7 +52,6 @@ export async function realpath(path: string): Promise<string> {
 		// DO NOT USE `fs.promises.realpath` here as it internally
 		// calls `fs.native.realpath` which will result in subst
 		// drives to be resolved to their target on Windows
-		// https://github.com/microsoft/vscode/issues/118562
 		return await Promises.realpath(path);
 	} catch (error) {
 

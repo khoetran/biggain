@@ -227,8 +227,6 @@ export class DiskFileSystemProvider extends Disposable implements
 					try {
 						// On Windows and if the file exists, we use a different strategy of saving the file
 						// by first truncating the file and then writing with r+ flag. This helps to save hidden files on Windows
-						// (see https://github.com/microsoft/vscode/issues/931) and prevent removing alternate data streams
-						// (see https://github.com/microsoft/vscode/issues/6363)
 						await Promises.truncate(filePath, 0);
 
 						// After a successful truncate() the flag can be set to 'r+' which will not truncate.
@@ -327,8 +325,7 @@ export class DiskFileSystemProvider extends Disposable implements
 
 		// when calling fs.read/write we try to avoid passing in the "pos" argument and
 		// rather prefer to pass in "null" because this avoids an extra seek(pos)
-		// call that in some cases can even fail (e.g. when opening a file over FTP -
-		// see https://github.com/microsoft/vscode/issues/73884).
+		// call that in some cases can even fail
 		//
 		// as such, we compare the passed in position argument with our last known
 		// position for the file descriptor and use "null" if they match.

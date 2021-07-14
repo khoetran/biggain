@@ -12,8 +12,8 @@ import { ISandboxConfiguration } from 'bg/base/parts/sandbox/common/sandboxTypes
 let product: IProductConfiguration;
 
 // Native sandbox environment
-if (typeof globals.vscode !== 'undefined' && typeof globals.vscode.context !== 'undefined') {
-	const configuration: ISandboxConfiguration | undefined = globals.vscode.context.configuration();
+if (typeof globals.biggain !== 'undefined' && typeof globals.biggain.context !== 'undefined') {
+	const configuration: ISandboxConfiguration | undefined = globals.biggain.context.configuration();
 	if (configuration) {
 		product = configuration.product;
 	} else {
@@ -31,7 +31,7 @@ else if (typeof require?.__$__nodeRequire === 'function') {
 	const pkg = require.__$__nodeRequire(joinPath(rootPath, 'package.json').fsPath) as { version: string; };
 
 	// Running out of sources
-	if (env['VSCODE_DEV']) {
+	if (env['BIGGAIN_DEV']) {
 		Object.assign(product, {
 			nameShort: `${product.nameShort} Dev`,
 			nameLong: `${product.nameLong} Dev`,
@@ -53,23 +53,15 @@ else {
 	// Running out of sources
 	if (Object.keys(product).length === 0) {
 		Object.assign(product, {
-			version: '1.59.0-dev',
-			nameShort: isWeb ? 'Code Web - OSS Dev' : 'Code - OSS Dev',
-			nameLong: isWeb ? 'Code Web - OSS Dev' : 'Code - OSS Dev',
-			applicationName: 'code-oss',
-			dataFolderName: '.vscode-oss',
-			urlProtocol: 'code-oss',
-			reportIssueUrl: 'https://github.com/microsoft/vscode/issues/new',
+			version: '1.0.0',
+			nameShort: isWeb ? 'BigGain Web' : 'BigGain',
+			nameLong: isWeb ? 'BigGain Web' : 'BigGain',
+			applicationName: 'biggain',
+			dataFolderName: '.biggain',
+			urlProtocol: 'biggain',
+			reportIssueUrl: 'https://github.com/khoetran/biggain/issues/new',
 			licenseName: 'MIT',
-			licenseUrl: 'https://github.com/microsoft/vscode/blob/main/LICENSE.txt',
-			extensionAllowedProposedApi: [
-				'ms-vscode.vscode-js-profile-flame',
-				'ms-vscode.vscode-js-profile-table',
-				'ms-vscode.remotehub',
-				'ms-vscode.remotehub-insiders',
-				'GitHub.remotehub',
-				'GitHub.remotehub-insiders'
-			],
+			licenseUrl: 'https://github.com/khoetran/biggain/blob/main/LICENSE.txt',
 		});
 	}
 }

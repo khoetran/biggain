@@ -8,7 +8,7 @@ import { getFirstAvailablePowerShellInstallation } from 'bg/base/node/powershell
 import * as processes from 'bg/base/node/processes';
 
 /**
- * Gets the detected default shell for the _system_, not to be confused with VS Code's _default_
+ * Gets the detected default shell for the _system_, not to be confused with BigGain's _default_
  * shell that the terminal uses by default.
  * @param os The platform to detect the shell of.
  */

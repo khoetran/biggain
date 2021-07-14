@@ -571,7 +571,7 @@ async function doCopy(source: string, target: string, payload: ICopyPayload): Pr
 		}
 
 		if (symbolicLink.dangling) {
-			return; // skip dangling symbolic links from here on (https://github.com/microsoft/vscode/issues/111621)
+			return; // skip dangling symbolic links from here on
 		}
 	}
 
@@ -637,12 +637,10 @@ async function doCopySymlink(source: string, target: string, payload: ICopyPaylo
  *
  * Another reason is `realpath` being entirely different in
  * the promise based implementation compared to the other
- * one (https://github.com/microsoft/vscode/issues/118562)
  *
  * Note: using getters for a reason, since `graceful-fs`
  * patching might kick in later after modules have been
  * loaded we need to defer access to fs methods.
- * (https://github.com/microsoft/vscode/issues/124176)
  */
 export const Promises = new class {
 

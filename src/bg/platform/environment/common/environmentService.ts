@@ -19,7 +19,7 @@ export interface INativeEnvironmentPaths {
 	 * The user data directory to use for anything that should be
 	 * persisted except for the content that is meant for the `homeDir`.
 	 *
-	 * Only one instance of VSCode can use the same `userDataDir`.
+	 * Only one instance of BigGain can use the same `userDataDir`.
 	 */
 	userDataDir: string
 
@@ -96,9 +96,9 @@ export abstract class AbstractNativeEnvironmentService implements INativeEnviron
 
 	@memoize
 	get argvResource(): URI {
-		const vscodePortable = env['BIGGAIN_PORTABLE'];
-		if (vscodePortable) {
-			return URI.file(join(vscodePortable, 'argv.json'));
+		const biggainPortable = env['BIGGAIN_PORTABLE'];
+		if (biggainPortable) {
+			return URI.file(join(biggainPortable, 'argv.json'));
 		}
 
 		return joinPath(this.userHome, this.productService.dataFolderName, 'argv.json');
@@ -142,14 +142,14 @@ export abstract class AbstractNativeEnvironmentService implements INativeEnviron
 			return resolve(cliExtensionsDir);
 		}
 
-		const vscodeExtensions = env['BIGGAIN_EXTENSIONS'];
-		if (vscodeExtensions) {
-			return vscodeExtensions;
+		const biggainExtensions = env['BIGGAIN_EXTENSIONS'];
+		if (biggainExtensions) {
+			return biggainExtensions;
 		}
 
-		const vscodePortable = env['BIGGAIN_PORTABLE'];
-		if (vscodePortable) {
-			return join(vscodePortable, 'extensions');
+		const biggainPortable = env['BIGGAIN_PORTABLE'];
+		if (biggainPortable) {
+			return join(biggainPortable, 'extensions');
 		}
 
 		return joinPath(this.userHome, this.productService.dataFolderName, 'extensions').fsPath;

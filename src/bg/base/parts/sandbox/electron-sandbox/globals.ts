@@ -120,8 +120,8 @@ export interface ISandboxContext {
 	resolveConfiguration(): Promise<ISandboxConfiguration>;
 }
 
-export const ipcRenderer: IpcRenderer = globals.vscode.ipcRenderer;
-export const ipcMessagePort: IpcMessagePort = globals.vscode.ipcMessagePort;
-export const webFrame: WebFrame = globals.vscode.webFrame;
-export const process: ISandboxNodeProcess = globals.vscode.process;
-export const context: ISandboxContext = globals.vscode.context;
+export const ipcRenderer: IpcRenderer = globals.biggain.ipcRenderer;
+export const ipcMessagePort: IpcMessagePort = globals.biggain.ipcMessagePort;
+export const webFrame: WebFrame = globals.biggain.webFrame;
+export const process: ISandboxNodeProcess = globals.biggain.process;
+export const context: ISandboxContext = globals.biggain.context;

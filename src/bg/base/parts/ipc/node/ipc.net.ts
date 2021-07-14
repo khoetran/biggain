@@ -514,7 +514,6 @@ function unmask(buffer: VSBuffer, mask: number): void {
 }
 
 // Read this before there's any chance it is overwritten
-// Related to https://github.com/microsoft/vscode/issues/30624
 export const XDG_RUNTIME_DIR = <string | undefined>process.env['XDG_RUNTIME_DIR'];
 
 const safeIpcPathLengths: { [platform: number]: number } = {
@@ -527,16 +526,16 @@ export function createRandomIPCHandle(): string {
 
 	// Windows: use named pipe
 	if (process.platform === 'win32') {
-		return `\\\\.\\pipe\\vscode-ipc-${randomSuffix}-sock`;
+		return `\\\\.\\pipe\\biggain-ipc-${randomSuffix}-sock`;
 	}
 
 	// Mac/Unix: use socket file and prefer
 	// XDG_RUNTIME_DIR over tmpDir
 	let result: string;
 	if (XDG_RUNTIME_DIR) {
-		result = join(XDG_RUNTIME_DIR, `vscode-ipc-${randomSuffix}.sock`);
+		result = join(XDG_RUNTIME_DIR, `biggain-ipc-${randomSuffix}.sock`);
 	} else {
-		result = join(tmpdir(), `vscode-ipc-${randomSuffix}.sock`);
+		result = join(tmpdir(), `biggain-ipc-${randomSuffix}.sock`);
 	}
 
 	// Validate length
@@ -557,8 +556,8 @@ export function createStaticIPCHandle(directoryPath: string, type: string, versi
 	// XDG_RUNTIME_DIR over user data path
 	// unless portable
 	let result: string;
-	if (XDG_RUNTIME_DIR && !process.env['VSCODE_PORTABLE']) {
-		result = join(XDG_RUNTIME_DIR, `vscode-${scope.substr(0, 8)}-${version}-${type}.sock`);
+	if (XDG_RUNTIME_DIR && !process.env['BIGGAIN_PORTABLE']) {
+		result = join(XDG_RUNTIME_DIR, `biggain-${scope.substr(0, 8)}-${version}-${type}.sock`);
 	} else {
 		result = join(directoryPath, `${version}-${type}.sock`);
 	}

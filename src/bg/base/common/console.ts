@@ -57,7 +57,7 @@ export function getFirstFrame(arg0: IRemoteConsoleLog | string | undefined): ISt
 	}
 
 	// Parse a source information out of the stack if we have one. Format can be:
-	// at vscode.commands.registerCommand (/Users/someone/Desktop/test-ts/out/src/extension.js:18:17)
+	// at biggain.commands.registerCommand (/Users/someone/Desktop/test-ts/out/src/extension.js:18:17)
 	// or
 	// at /Users/someone/Desktop/test-ts/out/src/extension.js:18:17
 	// or

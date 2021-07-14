@@ -52,7 +52,7 @@ export interface IJSONSchema {
 	then?: IJSONSchema;
 	else?: IJSONSchema;
 
-	// VS Code extensions
+	// BigGain extensions
 	defaultSnippets?: IJSONSchemaSnippet[];
 	errorMessage?: string;
 	patternErrorMessage?: string;

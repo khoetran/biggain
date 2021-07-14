@@ -10,7 +10,7 @@ import { getPathFromAmdModule } from 'bg/base/test/node/testUtils';
 function createClient(): Client {
 	return new Client(getPathFromAmdModule(require, 'bootstrap-fork'), {
 		serverName: 'TestServer',
-		env: { VSCODE_AMD_ENTRYPOINT: 'bg/base/parts/ipc/test/node/testApp', verbose: true }
+		env: { BIGGAIN_AMD_ENTRYPOINT: 'bg/base/parts/ipc/test/node/testApp', verbose: true }
 	});
 }
 

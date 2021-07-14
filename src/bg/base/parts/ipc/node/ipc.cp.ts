@@ -177,7 +177,7 @@ export class Client implements IChannelClient, IDisposable {
 			const args = this.options && this.options.args ? this.options.args : [];
 			const forkOpts: ForkOptions = Object.create(null);
 
-			forkOpts.env = { ...deepClone(process.env), 'VSCODE_PARENT_PID': String(process.pid) };
+			forkOpts.env = { ...deepClone(process.env), 'BIGGAIN_PARENT_PID': String(process.pid) };
 
 			if (this.options && this.options.env) {
 				forkOpts.env = { ...forkOpts.env, ...this.options.env };
@@ -203,7 +203,6 @@ export class Client implements IChannelClient, IDisposable {
 
 			if (isMacintosh && forkOpts.env) {
 				// Unset `DYLD_LIBRARY_PATH`, as it leads to process crashes
-				// See https://github.com/microsoft/vscode/issues/105848
 				delete forkOpts.env['DYLD_LIBRARY_PATH'];
 			}
 
