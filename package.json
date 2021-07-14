@@ -18,9 +18,22 @@
     "hygiene": "node --max_old_space_size=4095 ./node_modules/gulp/bin/gulp.js hygiene"
   },
   "dependencies": {
-    "@types/trusted-types": "^2.0.2"
+    "@types/trusted-types": "^2.0.2",
+    "electron": "^13.1.6",
+    "graceful-fs": "^4.2.6",
+    "minimist": "^1.2.5",
+    "nsfw": "^2.1.2",
+    "spdlog": "^0.13.5"
   },
   "devDependencies": {
+    "@types/assert": "^1.5.5",
+    "@types/graceful-fs": "^4.1.5",
+    "@types/minimist": "^1.2.2",
+    "@types/mocha": "^8.2.3",
+    "@types/node": "14.x",
+    "@types/sinon": "^10.0.2",
+    "@types/wicg-file-system-access": "^2020.9.2",
+    "assert": "^2.0.0",
     "event-stream": "3.3.4",
     "gulp": "^4.0.2",
     "gulp-bom": "^3.0.0",
@@ -33,6 +46,7 @@
     "p-all": "^1.0.0",
     "playwright": "^1.12.3",
     "rimraf": "^2.2.8",
+    "sinon": "^11.1.1",
     "source-map": "0.6.1",
     "typescript": "^4.4.0-dev.20210708",
     "underscore": "^1.12.1",

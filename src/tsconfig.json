@@ -7,7 +7,9 @@
 		"outDir": "../out/bg",
 		"target": "es2020",
 		"types": [
-			"trusted-types"
+			"mocha",
+			"trusted-types",
+			"wicg-file-system-access"
 		]
 	},
 	"include": [

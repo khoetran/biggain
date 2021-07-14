@@ -31,8 +31,10 @@ module.exports.indentationFilter = [
 	'!**/LICENSE',
 	'!test/unit/assert.js',
 	'!src/bg/base/common/insane/insane.js',
+	'!src/bg/base/node/terminateProcess.sh',
 
 	// except multiple specific files
+	'!**/fixtures/**',
 	'!**/package.json',
 	'!**/yarn.lock',
 	'!**/yarn-error.log',
@@ -42,6 +44,7 @@ module.exports.indentationFilter = [
 	'!src/typings/**/*.d.ts',
 	'!**/*.{svg,exe,png,bmp,jpg,scpt,bat,cmd,cur,ttf,woff,eot,md,ps1,template,yaml,yml,d.ts.recipe,ico,icns,plist}',
 	'!build/lib/**/*.js',
+	'!build/**/*.sh',
 ];
 
 module.exports.copyrightFilter = [

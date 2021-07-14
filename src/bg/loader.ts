@@ -22,17 +22,6 @@ const _amdLoaderGlobal = this;
 declare var module: {
 	exports: any;
 };
-declare var process: {
-	platform: string;
-	type: string;
-	mainModule: string;
-	arch: string
-	argv: string[];
-	versions: {
-		node: string;
-		electron: string;
-	}
-};
 
 declare var global: object;
 const _commonjsGlobal = typeof global === 'object' ? global : {};
@@ -83,6 +72,7 @@ namespace AMDLoader {
 			this._detected = true;
 			this._isWindows = Environment._isWindows();
 			this._isNode = (typeof module !== 'undefined' && !!module.exports);
+			//@ts-ignore
 			this._isElectronRenderer = (typeof process !== 'undefined' && typeof process.versions !== 'undefined' && typeof process.versions.electron !== 'undefined' && process.type === 'renderer');
 			this._isWebWorker = (typeof global.importScripts === 'function');
 		}
